@@ -3,9 +3,23 @@ h1 {
     text-align: center;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: 600;
+    background-color: darkgray;
 }
 h2 {
     text-align: center;
     font-weight: 400;
+    background-color: lightgray;
 }
 
+monthlyCost {
+  text-align: right;
+}
+
+table {
+  background-color: lightgray;
+}
+
+td, th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+}
