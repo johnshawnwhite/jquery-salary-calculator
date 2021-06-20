@@ -16,7 +16,7 @@ let newEmployee ={
          lastName: $('#lastName').val(),  
          iD: $('#iD').val(), 
          title: $('#title').val(), 
-         annualSalary: Number( $('#salary').val()),
+         annualSalary: $('#salary').val(),
           
 }
 
@@ -34,10 +34,14 @@ $('#salary').val('');
 
 //time to add the employee cost up
 function total() {
-    let totalSalary = 0;
+    let totalSalary = 0;  // have to add up and divide by 12 months
     for (let i = 0; i < employees.length; i++) {
-        totalSalary += Number(employees[i].salary);
+        const employeeSalary = employees[i][annualSalary];
+        totalSalary += totalSalary;
+
     }
+    totalSalary = totalSalary / 12;
+    $('#monthlyCost').html('Cost Monthly:' + (totalSalary).toLocaleString;
     console.log(totalSalary);
     $( '#totalSalaryText' ).text(totalSalary);
 }
