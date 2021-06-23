@@ -17,7 +17,7 @@ let newEmployee ={
          lastName: $('#lastName').val(),  
          iD: $('#iD').val(), 
          title: $('#title').val(), 
-         annualSalary: $('#salary').val(),
+         annualSalary: Number($('#salary').val()),
           
 }
 
@@ -35,15 +35,16 @@ $('#salary').val('');
 // add employee is done
 
 function addTable() {
-    $('person').prepend(`
-    <tr id="person">
-        <td class="tableFirstName">First Name</td>
-        <td class="tableLastName">Last Name</td>
-        <td class="tableID">ID</td>
-        <td class="tableTitle">Title</td>
-        <td class="tableSalary">Salary</td>
+    for (const employee of employees){
+    $('#employees').append(
+    <tr>
+        <td> ${employee.firstName}</td>
+        <td> ${employee.lastName}</td>
+        <td> ${employee.iD}</td>
+        <td> ${employee.title}</td>
+        <td> ${employee.salary}</td>
     </tr>
-    `);
+    )};
 }
 
 //time to add the employee cost up
@@ -51,7 +52,8 @@ function total() {
     let totalSalary = 0;  // have to add up and divide by 12 months
     for (let i = 0; i < employees.length; i++) {
         const employeeSalary = employees[i]['salary'];
-        totalSalary += employeeSalary;
+        totalSalary += employeeSalary; 
+        // taking index value and totaling salary
 
     }
     totalSalary = totalSalary / 12;
