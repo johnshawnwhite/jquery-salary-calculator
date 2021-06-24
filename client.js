@@ -36,6 +36,8 @@ $('#salary').val('');
 // add employee is done
 // sending employee from each input to the DOM
 function addTable() {
+
+    $('#table').empty();
     for (const employee of employees){
     const row =
     `<tr>
@@ -62,6 +64,13 @@ function total() {
     }
     totalSalary = totalSalary / 12;
     $('#monthlyCost').html('Cost Monthly:' + (totalSalary).toLocaleString('en-us', {style:'currency', currency: 'USD',}));
+    if(totalSalary>20000) {
+        console.log('overbudget');
+        $('#monthlyCost').addClass('overbudget');
+
+    //     console.log('too much');
+    //     $('#monthly').addClass('#overbudget')
+    // }
     console.log(totalSalary);
     $( '#totalSalaryText' ).text(totalSalary);
 }
@@ -83,6 +92,4 @@ function total() {
 //     $('#firstInput', '#secondInput', '#thirdInput', '#fourthInput','#fifthInput').val(''); // we reset the user input
 //     $('#nope').empty(); // we clear any error messages from the DOM
 //     return employeeList;
-//   }
-
-console.log(employees);
+}
