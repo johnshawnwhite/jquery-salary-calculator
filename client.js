@@ -4,7 +4,7 @@ function onReady() {
     console.log(" This is going to work!")
 
     $('#employeeAddSubmit').on('click', employeeAdd);
-    addTable(people);
+    
 }
 
 const employees = [];
@@ -17,13 +17,14 @@ let newEmployee ={
          lastName: $('#lastName').val(),  
          iD: $('#iD').val(), 
          title: $('#title').val(), 
-         annualSalary: Number($('#salary').val()),
+         salary: Number($('#salary').val()),
           
 }
 
 employees.push(newEmployee);   ///sending into employees array
 total();
 
+addTable();
 
 $('#firstName').val('');// setting the values of each id back to zero after the 'click' event
 $('#lastName').val('');
@@ -33,18 +34,21 @@ $('#salary').val('');
 
 }    
 // add employee is done
-
+// sending employee from each input to the DOM
 function addTable() {
     for (const employee of employees){
-    $('#employees').append(
-    <tr>
+    const row =
+    `<tr>
         <td> ${employee.firstName}</td>
         <td> ${employee.lastName}</td>
         <td> ${employee.iD}</td>
         <td> ${employee.title}</td>
         <td> ${employee.salary}</td>
+        <td>DELETE BUTTON HERE</td>
     </tr>
-    )};
+    `;
+    $('#table').append(row)
+    }
 }
 
 //time to add the employee cost up

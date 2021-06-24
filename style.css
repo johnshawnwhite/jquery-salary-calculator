@@ -5,21 +5,21 @@ h1 {
     font-weight: 600;
     background-color: darkgray;
 }
-h2 {
+/* h2 {
     text-align: center;
     font-weight: 400;
     background-color: lightgray;
-}
+} */
 
 monthlyCost {
   text-align: right;
 }
 
 table {
-  background-color: lightgray;
+  background-color: rgb(228, 228, 228);
 }
 
 td, th {
-  border: 1px solid #999;
+  border: 1px solid rgb(145, 145, 145);
   padding: 0.5rem;
 }
