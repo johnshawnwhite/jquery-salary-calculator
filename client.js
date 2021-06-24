@@ -1,13 +1,19 @@
-$(document).ready(onReady);
+$(document).ready(onReady); // on the page loading these functions will run
+
+const employees = [];
 
 function onReady() {
     console.log(" This is going to work!")
 
-    $('#employeeAddSubmit').on('click', employeeAdd);
-    
+    $('#employeeAddSubmit').on('click', employeeAdd); // when clicking submit, i add the employee to the array of employees
+     $('table').on('click', '.deleteButton', deleteEmployee);// target the table, on click, target the delete employee button, that uses the function.
 }
 
-const employees = [];
+function deleteEmployee() {
+    console.log('clicked delete');
+    $(this).closest('tr').remove();
+}
+
 
 function employeeAdd(){
     // this is where the employee is added 
@@ -18,10 +24,18 @@ let newEmployee ={
          iD: $('#iD').val(), 
          title: $('#title').val(), 
          salary: Number($('#salary').val()),
-          
+        
 }
+console.log(newEmployee);  
 
-employees.push(newEmployee);   ///sending into employees array
+
+
+
+//click listener
+
+
+employees.push(newEmployee);
+   ///sending into employees array
 total();
 
 addTable();
@@ -32,25 +46,30 @@ $('#iD').val('');
 $('#title').val('');
 $('#salary').val('');
 
-}    
+$('#table').val(''); //empty the input values for each field after sending to the table elment
+
+}
 // add employee is done
 // sending employee from each input to the DOM
 function addTable() {
 
-    $('#table').empty();
-    for (const employee of employees){
-    const row =
-    `<tr>
-        <td> ${employee.firstName}</td>
+   $('#table').empty(); //emptying the list being sent to the table (without this one i seem to push a second, or third row to the list)?
+    for (let employee of employees){
+    const row =`
+    <tr>
+        <td> ${employee.firstName}</td> 
         <td> ${employee.lastName}</td>
         <td> ${employee.iD}</td>
         <td> ${employee.title}</td>
         <td> ${employee.salary}</td>
-        <td>DELETE BUTTON HERE</td>
+        <td><button class="deleteButton" id="deleteButton" >DELETE</button></td>
     </tr>
     `;
+    // pulling the values from each input field so they can be added to the dom
     $('#table').append(row)
     }
+   
+
 }
 
 //time to add the employee cost up
@@ -62,11 +81,11 @@ function total() {
         // taking index value and totaling salary
 
     }
-    totalSalary = totalSalary / 12;
+    totalSalary = totalSalary / 12; // dividing the total salary by 12 and sending that value to the DOM in the monthly cost location
     $('#monthlyCost').html('Cost Monthly:' + (totalSalary).toLocaleString('en-us', {style:'currency', currency: 'USD',}));
-    if(totalSalary>20000) {
+    if(totalSalary>20000) {  // we want the monthly cost value to turn red if the value is over 20K
         console.log('overbudget');
-        $('#monthlyCost').addClass('overbudget');
+        $('#monthlyCost').addClass('overbudget'); // this is the actual command that connects to the css file pulling the class to change the bg to red
 
     //     console.log('too much');
     //     $('#monthly').addClass('#overbudget')
